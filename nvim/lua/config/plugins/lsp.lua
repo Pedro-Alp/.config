@@ -17,7 +17,13 @@ return {
     },
     config = function()
       local capabilities = require('blink.cmp').get_lsp_capabilities()
-      require("lspconfig").lua_ls.setup { capabilites = capabilities }
+      vim.lsp.config('*', {
+        capabilities = capabilities
+      })
+      vim.lsp.config.lua_ls = {
+        filetypes = {'lua'},
+      }
+      vim.lsp.enable('lua_ls')
 
 
       vim.api.nvim_create_autocmd('LspAttach', {
